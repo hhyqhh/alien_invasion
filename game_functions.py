@@ -8,10 +8,31 @@ Created on Wed Sep 27 10:44:12 2017
 import sys 
 import pygame
 
-def check_events():
+def check_keydown_event(event,ship):
+    """相应按下"""
+    if event.key == pygame.K_RIGHT:
+        ship.moving_right = True
+    elif event.key == pygame.K_LEFT:
+        ship.moving_left = True
+    
+def check_keyup_event(event,ship):
+    """相应松开"""
+    if event.key == pygame.K_RIGHT:
+        ship.moving_right = False
+    elif event.key == pygame.K_LEFT:
+        ship.moving_left = False    
+
+def check_events(ship):
+    """响应按键和鼠标事件"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        elif event.type == pygame.KEYDOWN:
+           check_keydown_event(event,ship)
+        
+        elif event.type == pygame.KEYUP:
+            check_keyup_event(event,ship)
+            
             
             
 def update_screen(ai_settings,screen,ship):

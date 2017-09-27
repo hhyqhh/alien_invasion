@@ -23,13 +23,13 @@ def run_game():
     
     
     # 创建一个飞船
-    ship = Ship(screen)
+    ship = Ship(ai_settings,screen)
 
     # 游戏主题循环
     while True:
         # 监视键盘和鼠标事件
-        gf.check_events()
- 
+        gf.check_events(ship)
+        ship.update()
         gf.update_screen(ai_settings,screen,ship)
 
 
